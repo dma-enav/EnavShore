@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>dk.dma</groupId>
+		<artifactId>dma-root-pom</artifactId>
+		<version>5</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dk.dma.enav.shore</groupId>
+	<artifactId>enav-shore-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>EnavShore parent</name>
+	<description>E-navigation shore service applications project</description>
+	<packaging>pom</packaging>
+
+	<organization>
+		<name>Danish Maritime Authority</name>
+		<url>http://dma.e-navigation.net</url>
+	</organization>
+
+	<scm>
+		<connection>scm:git:git@github.com:dma-dk/EnavShore.git</connection>
+		<developerConnection>scm:git:git@github.com:dma-dk/EnavShore.git</developerConnection>
+		<url>https://github.com/dma-dk/EnavShore</url>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>dma-releases</id>
+			<name>Dma Release Repository</name>
+			<url>http://repository-dma.forge.cloudbees.com/release/</url>
+		</repository>
+	</repositories>
+
+	<modules>
+		<module>enav-shore-msiweb</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
+		<version.jboss.as>7.1.3.Final</version.jboss.as>
+		<version.jboss.spec.javaee.6.0>3.0.2.Final</version.jboss.spec.javaee.6.0>
+		<version.compiler.plugin>3.1</version.compiler.plugin>
+		<version.ear.plugin>2.8</version.ear.plugin>
+		<version.ejb.plugin>2.3</version.ejb.plugin>
+		<version.war.plugin>2.3</version.war.plugin>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Define the version of the EJB jar so that we don't need to repeat ourselves in every module -->
+			<!-- <dependency> -->
+			<!-- <groupId>org.jboss.as.quickstarts</groupId> -->
+			<!-- <artifactId>jboss-as-ejb-in-ear-ejb</artifactId> -->
+			<!-- <version>${project.version}</version> -->
+			<!-- <type>ejb</type> -->
+			<!-- </dependency> -->
+
+			<!-- Define the version of the WAR so that we don't need to repeat ourselves in every module -->
+			<!-- <dependency> -->
+			<!-- <groupId>org.jboss.as.quickstarts</groupId> -->
+			<!-- <artifactId>jboss-as-ejb-in-ear-web</artifactId> -->
+			<!-- <version>${project.version}</version> -->
+			<!-- <type>war</type> -->
+			<!-- <scope>compile</scope> -->
+			<!-- </dependency> -->
+
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-6.0</artifactId>
+				<version>${version.jboss.spec.javaee.6.0}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<!-- Compiler plugin enforces Java 1.7 compatibility and activates annotation processors -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.compiler.plugin}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>${version.jboss.maven.plugin}</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<wtpapplicationxml>true</wtpapplicationxml>
+					<wtpversion>2.0</wtpversion>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+    
