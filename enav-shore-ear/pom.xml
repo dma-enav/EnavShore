@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>enav-shore-ear</artifactId>
-	<name>EnavShore EAR</name>
+	<name>EnavShore ear</name>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>ear</packaging>
 

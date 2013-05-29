@@ -10,9 +10,14 @@
 	</parent>
 
 	<artifactId>enav-shore-web-msi</artifactId>
-	<name>EnavShore MSI web application</name>
+	<name>EnavShore msi web application</name>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+
+	<properties>
+		<wicket.version>6.7.0</wicket.version>
+		<version.net.ftlines.wicket-cdi>6.0</version.net.ftlines.wicket-cdi>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -21,6 +26,37 @@
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-core</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.ftlines.wicket-cdi</groupId>
+			<artifactId>wicket-cdi</artifactId>
+			<version>${version.net.ftlines.wicket-cdi}</version>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+			<!-- Place the .html files next to source files as resources. -->
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+	</build>
 
 </project>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dk.dma.enav.shore.msi.TestEJB;
 
-@WebServlet("/test")
+@WebServlet("/test2")
 public class TestServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
