@@ -9,9 +9,10 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>enav-shore-msiejb</artifactId>
-	<name>EnavShore MSI EJB</name>
+	<artifactId>enav-shore-ejb-common</artifactId>
+	<name>EnavShore ejb common</name>
 	<version>0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
 	<dependencies>
 		<dependency>

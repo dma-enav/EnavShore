@@ -8,10 +8,10 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>enav-shore-msiweb</artifactId>
-	<name>EnavShore MSI web application</name>
+	<artifactId>enav-shore-web-common</artifactId>
+	<name>EnavShore web common</name>
 	<version>0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>pom</packaging>
 
 	<build>
 		<plugins>
@@ -25,17 +25,15 @@
 		</plugins>
 	</build>
 
+	<properties>
+		<version.servlet.api>2.5</version.servlet.api>
+	</properties>
+
 	<dependencies>
-		<dependency>
-			<groupId>dk.dma.enav.shore</groupId>
-			<artifactId>enav-shore-msiejb</artifactId>
-			<type>ejb</type>
-			<scope>provided</scope>
-		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<version>${version.servlet.api}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -59,6 +57,5 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
 
 </project>

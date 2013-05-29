@@ -30,8 +30,10 @@
 	</repositories>
 
 	<modules>
-		<module>enav-shore-msiejb</module>
-		<module>enav-shore-msiweb</module>
+		<module>enav-shore-ejb-common</module>
+		<module>enav-shore-ejb-msi</module>
+		<module>enav-shore-web-common</module>
+		<module>enav-shore-web-msi</module>
 		<module>enav-shore-ear</module>
 	</modules>
 
@@ -53,13 +55,13 @@
 		<dependencies>
 			<dependency>
 				<groupId>dk.dma.enav.shore</groupId>
-				<artifactId>enav-shore-msiweb</artifactId>
+				<artifactId>enav-shore-web-msi</artifactId>
 				<version>0.1-SNAPSHOT</version>
 				<type>war</type>
 			</dependency>
 			<dependency>
 				<groupId>dk.dma.enav.shore</groupId>
-				<artifactId>enav-shore-msiejb</artifactId>
+				<artifactId>enav-shore-ejb-msi</artifactId>
 				<version>0.1-SNAPSHOT</version>
 				<type>ejb</type>
 			</dependency>

@@ -18,12 +18,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>dk.dma.enav.shore</groupId>
-			<artifactId>enav-shore-msiejb</artifactId>
+			<artifactId>enav-shore-ejb-msi</artifactId>
 			<type>ejb</type>
 		</dependency>
 		<dependency>
 			<groupId>dk.dma.enav.shore</groupId>
-			<artifactId>enav-shore-msiweb</artifactId>
+			<artifactId>enav-shore-web-msi</artifactId>
 			<type>war</type>
 		</dependency>
 	</dependencies>
@@ -42,7 +42,7 @@
 					<modules>
 						<webModule>
 							<groupId>dk.dma.enav.shore</groupId>
-							<artifactId>enav-shore-msiweb</artifactId>
+							<artifactId>enav-shore-web-msi</artifactId>
 							<contextRoot>/msi</contextRoot>
 						</webModule>
 					</modules>
