@@ -5,12 +5,13 @@
 	<parent>
 		<groupId>dk.dma.enav.shore</groupId>
 		<artifactId>enav-shore-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>enav-shore-msiweb</artifactId>
-	<packaging>war</packaging>
+	<artifactId>enav-shore-msiweb</artifactId>	
 	<name>EnavShore MSI web application</name>
+	<version>0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 
 	<build>
 		<plugins>
@@ -23,6 +24,20 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 
 </project>

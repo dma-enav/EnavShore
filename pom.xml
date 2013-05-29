@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dk.dma.enav.shore</groupId>
 	<artifactId>enav-shore-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	<name>EnavShore parent</name>
 	<description>E-navigation shore service applications project</description>
 	<packaging>pom</packaging>
@@ -36,6 +36,7 @@
 
 	<modules>
 		<module>enav-shore-msiweb</module>
+		<module>enav-shore-ear</module>
 	</modules>
 
 	<properties>
@@ -53,23 +54,13 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- Define the version of the EJB jar so that we don't need to repeat ourselves in every module -->
-			<!-- <dependency> -->
-			<!-- <groupId>org.jboss.as.quickstarts</groupId> -->
-			<!-- <artifactId>jboss-as-ejb-in-ear-ejb</artifactId> -->
-			<!-- <version>${project.version}</version> -->
-			<!-- <type>ejb</type> -->
-			<!-- </dependency> -->
-
-			<!-- Define the version of the WAR so that we don't need to repeat ourselves in every module -->
-			<!-- <dependency> -->
-			<!-- <groupId>org.jboss.as.quickstarts</groupId> -->
-			<!-- <artifactId>jboss-as-ejb-in-ear-web</artifactId> -->
-			<!-- <version>${project.version}</version> -->
-			<!-- <type>war</type> -->
-			<!-- <scope>compile</scope> -->
-			<!-- </dependency> -->
-
+			<dependency>
+				<groupId>dk.dma.enav.shore</groupId>
+				<artifactId>enav-shore-msiweb</artifactId>
+				<version>0.1-SNAPSHOT</version>
+				<type>war</type>
+				<scope>compile</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.jboss.spec</groupId>
 				<artifactId>jboss-javaee-6.0</artifactId>
