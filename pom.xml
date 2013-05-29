@@ -15,11 +15,6 @@
 	<description>E-navigation shore service applications project</description>
 	<packaging>pom</packaging>
 
-	<organization>
-		<name>Danish Maritime Authority</name>
-		<url>http://dma.e-navigation.net</url>
-	</organization>
-
 	<scm>
 		<connection>scm:git:git@github.com:dma-dk/EnavShore.git</connection>
 		<developerConnection>scm:git:git@github.com:dma-dk/EnavShore.git</developerConnection>
@@ -35,6 +30,7 @@
 	</repositories>
 
 	<modules>
+		<module>enav-shore-msiejb</module>
 		<module>enav-shore-msiweb</module>
 		<module>enav-shore-ear</module>
 	</modules>
@@ -50,6 +46,7 @@
 		<version.war.plugin>2.3</version.war.plugin>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
+		<slf4j.version>1.7.5</slf4j.version>
 	</properties>
 
 	<dependencyManagement>
@@ -59,7 +56,12 @@
 				<artifactId>enav-shore-msiweb</artifactId>
 				<version>0.1-SNAPSHOT</version>
 				<type>war</type>
-				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>dk.dma.enav.shore</groupId>
+				<artifactId>enav-shore-msiejb</artifactId>
+				<version>0.1-SNAPSHOT</version>
+				<type>ejb</type>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.spec</groupId>
@@ -70,6 +72,19 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
