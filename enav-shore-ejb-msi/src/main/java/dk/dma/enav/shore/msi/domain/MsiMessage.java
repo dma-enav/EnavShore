@@ -6,11 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import dk.dma.enav.shore.common.domain.AbstractEntity;
+
 @Entity
-public class MsiMessage {
+public class MsiMessage extends AbstractEntity {
 
-    private Integer id;
-
+    private static final long serialVersionUID = 1L;
+    
     public MsiMessage() {
 
     }
@@ -20,10 +22,6 @@ public class MsiMessage {
     @Column(unique = true, nullable = false)
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
 }

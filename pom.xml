@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>dk.dma</groupId>
-		<artifactId>dma-root-pom</artifactId>
-		<version>5</version>
+		<groupId>dk.dma.commons</groupId>
+		<artifactId>dma-commons-parent</artifactId>
+		<version>0.1-SNAPSHOT</version>
 	</parent>
 
-	<modelVersion>4.0.0</modelVersion>
 	<groupId>dk.dma.enav.shore</groupId>
 	<artifactId>enav-shore-parent</artifactId>
 	<version>0.1-SNAPSHOT</version>
@@ -32,7 +32,6 @@
 	<modules>
 		<module>enav-shore-ejb-common</module>
 		<module>enav-shore-ejb-msi</module>
-		<module>enav-shore-web-common</module>
 		<module>enav-shore-web-msi</module>
 		<module>enav-shore-ear</module>
 	</modules>

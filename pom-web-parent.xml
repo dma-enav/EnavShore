@@ -8,8 +8,8 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>enav-shore-web-common</artifactId>
-	<name>EnavShore web common</name>
+	<artifactId>enav-shore-web-parent</artifactId>
+	<name>EnavShore web parent</name>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 

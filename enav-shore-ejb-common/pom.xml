@@ -5,55 +5,14 @@
 
 	<parent>
 		<groupId>dk.dma.enav.shore</groupId>
-		<artifactId>enav-shore-parent</artifactId>
+		<artifactId>enav-shore-ejb-parent</artifactId>
 		<version>0.1-SNAPSHOT</version>
+		<relativePath>../pom-ejb-parent.xml</relativePath>
 	</parent>
 
 	<artifactId>enav-shore-ejb-common</artifactId>
 	<name>EnavShore ejb common</name>
 	<version>0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-
-	<dependencies>
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.annotation</groupId>
-			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.transaction</groupId>
-			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-ejb-plugin</artifactId>
-				<version>${version.ejb.plugin}</version>
-				<configuration>
-					<ejbVersion>3.1</ejbVersion>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
 

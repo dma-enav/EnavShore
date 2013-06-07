@@ -5,14 +5,22 @@
 
 	<parent>
 		<groupId>dk.dma.enav.shore</groupId>
-		<artifactId>enav-shore-ejb-common</artifactId>
+		<artifactId>enav-shore-ejb-parent</artifactId>
 		<version>0.1-SNAPSHOT</version>
-		<relativePath>../enav-shore-ejb-common/pom.xml</relativePath>
+		<relativePath>../pom-ejb-parent.xml</relativePath>
 	</parent>
 
 	<artifactId>enav-shore-ejb-msi</artifactId>
 	<name>EnavShore msi ejb</name>
 	<version>0.1-SNAPSHOT</version>
+
+	<dependencies>
+		<dependency>
+			<groupId>dk.dma.enav.shore</groupId>
+			<artifactId>enav-shore-ejb-common</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 
 </project>
 

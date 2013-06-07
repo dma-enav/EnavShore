@@ -7,6 +7,8 @@ import javax.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dk.dma.enav.shore.msi.domain.MsiMessage;
+
 @Stateless
 public class TestEJB {
     
@@ -16,7 +18,10 @@ public class TestEJB {
     protected EntityManager em;
 
     public void helloworld() {
-        LOG.info("Hello world em: " + em);
+        MsiMessage message = new MsiMessage();
+        em.persist(message);
+        
+        LOG.info("id: " + message.getId());
     }
 
 }

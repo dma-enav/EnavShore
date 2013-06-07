@@ -4,9 +4,9 @@
 
 	<parent>
 		<groupId>dk.dma.enav.shore</groupId>
-		<artifactId>enav-shore-web-common</artifactId>
+		<artifactId>enav-shore-web-parent</artifactId>
 		<version>0.1-SNAPSHOT</version>
-		<relativePath>../enav-shore-web-common/pom.xml</relativePath>
+		<relativePath>../pom-web-parent.xml</relativePath>
 	</parent>
 
 	<artifactId>enav-shore-web-msi</artifactId>
