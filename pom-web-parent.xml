@@ -6,6 +6,7 @@
 		<groupId>dk.dma.enav.shore</groupId>
 		<artifactId>enav-shore-parent</artifactId>
 		<version>0.1-SNAPSHOT</version>
+		<relativePath>pom.xml</relativePath>
 	</parent>
 
 	<artifactId>enav-shore-web-parent</artifactId>
