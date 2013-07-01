@@ -22,5 +22,52 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>${version.jboss.maven.plugin}</version>
+				<executions>
+					<!-- Deploy the JDBC driver -->
+					<execution>
+						<id>deploy-driver</id>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy-artifact</goal>
+						</goals>
+						<configuration>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<name>mysql-connector-java-5.1.21.jar</name>
+						</configuration>
+					</execution>
+					<!-- Add a data source -->
+					<execution>
+						<id>add-datasource</id>
+						<phase>install</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<address>subsystem=datasources,data-source=java:jboss/datasources/msiDS</address>
+							<resource>
+								<enable-resource>true</enable-resource>
+								<properties>
+									<jndi-name>java:jboss/datasources/msiDS</jndi-name>
+									<enabled>true</enabled>
+									<connection-url>jdbc:h2:mem:msi;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+									<driver-name>h2</driver-name>
+									<user-name>sa</user-name>
+									<password>sa</password>
+								</properties>
+							</resource>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
 
