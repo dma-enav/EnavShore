@@ -75,10 +75,10 @@ Example:
 
 ## Deployment ##
 
-Applications deploy
+Deploy
 
 	mvn jboss-as:deploy
 
+Undeploy
 
-	
-
+	mvn jboss-as:undeploy
