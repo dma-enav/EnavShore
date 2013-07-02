@@ -21,15 +21,54 @@ Or use e-navigation deployment project:
 
 ## MySQL setup ##
 
-
+TODO
 
 ## Configuring JBoss ##
 
-Start JBoss and add resources like data sources to JBoss with the following command
-	
-	mvn install -Pjboss-configure -P<env>
+To configure data sources and other resources run
 
-The default environment is development.
+	mvn install -Pjboss-configure
+
+The resources are configured with properties that needs to be defined. E.g:
+
+<pre>
+msi.database.url
+msi.database.user
+msi.database.password
+</pre>
+
+Default values will be used if properties are not given (often localhost for data sources).
+
+To define the properties different approaches can be used:
+
+*Define properties in Maven `settings.xml`*
+
+Example
+<pre>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+
+	<profiles>
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>					
+			</activation>
+			<properties>
+				<msi.database.url>jdbc:mysql://localhost:3306/msi</msi.database.url>
+				<msi.database.user>msi</msi.database.user>
+				<msi.database.password>msi</msi.database.password>
+			</properties>
+		</profile>
+	</profiles>
+</settings>
+</pre>
+
+*Make separate `settings.xml` and provide with `-s` option to Maven*
+
+*Define in call*
+  <pre>
+  	mvn install -Pjboss-configure -D"msi.database.url=jdbc:mysql://10.0.0.3:3306/msi" ...	
+  </pre>
 
 ## Deployment ##
 

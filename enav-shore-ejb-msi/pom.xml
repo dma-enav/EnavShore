@@ -22,38 +22,14 @@
 		</dependency>
 	</dependencies>
 
+	<!-- Default properties -->
 	<properties>
-		<msi.database.url>jdbc:mysql://10.0.0.3:3306/msi</msi.database.url>
+		<msi.database.url>jdbc:mysql://localhost:3306/msi</msi.database.url>
 		<msi.database.user>msi</msi.database.user>
 		<msi.database.password>msi</msi.database.password>
 	</properties>
-	
 
 	<profiles>
-		<profile>
-			<id>development</id>
-			<properties>
-				<msi.database.url>jdbc:mysql://10.0.0.3:3306/msi</msi.database.url>
-				<msi.database.user>msi</msi.database.user>
-				<msi.database.password>msi</msi.database.password>
-			</properties>
-		</profile>
-		<profile>
-			<id>beta</id>
-			<properties>
-				<msi.database.url>jdbc:mysql://localhost:3306/msi</msi.database.url>
-				<msi.database.user>msi</msi.database.user>
-				<msi.database.password>msi</msi.database.password>
-			</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<msi.database.url>${settings.asad}</msi.database.url>
-				<msi.database.user>msi</msi.database.user>
-				<msi.database.password>msi</msi.database.password>
-			</properties>
-		</profile>
 		<profile>
 			<id>jboss-configure</id>
 			<build>
