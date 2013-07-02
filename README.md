@@ -10,10 +10,12 @@ E-navigation shore service applications
 * MySQL (Maven configures JBoss datasource to use MySQL)
 
 MySQL module needs to be installed in JBoss: 
-<http://www.mastertheboss.com/jboss-datasource/how-to-configure-a-datasource-with-jboss-7>
-Or use e-navigation deployment project:
-<https://github.com/dma-dk/enav-appsrv>
 
+<http://www.mastertheboss.com/jboss-datasource/how-to-configure-a-datasource-with-jboss-7>
+
+Or use e-navigation deployment project:
+
+<https://github.com/dma-dk/enav-appsrv>
 
 ## Building ##
 
@@ -41,9 +43,9 @@ Default values will be used if properties are not given (often localhost for dat
 
 To define the properties different approaches can be used:
 
-*Define properties in Maven `settings.xml`*
+**Define properties in Maven `settings.xml`**
 
-Example
+Example:
 <pre>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
@@ -63,12 +65,13 @@ Example
 </settings>
 </pre>
 
-*Make separate `settings.xml` and provide with `-s` option to Maven*
+**Make separate `settings.xml` and provide with `-s` option to Maven**
 
-*Define in call*
-  <pre>
-  	mvn install -Pjboss-configure -D"msi.database.url=jdbc:mysql://10.0.0.3:3306/msi" ...	
-  </pre>
+	mvn -s settings-prod.xml install -Pjboss-configure 
+
+**Give properties on command line**
+
+	mvn install -Pjboss-configure -D"msi.database.url=jdbc:mysql://10.0.0.3:3306/msi" ...	
 
 ## Deployment ##
 
