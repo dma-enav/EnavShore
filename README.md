@@ -46,7 +46,7 @@ To define the properties different approaches can be used:
 **Define properties in Maven `settings.xml`**
 
 Example:
-<pre>
+```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
 
@@ -63,7 +63,7 @@ Example:
 		</profile>
 	</profiles>
 </settings>
-</pre>
+```
 
 **Make separate `settings.xml` and provide with `-s` option to Maven**
 
