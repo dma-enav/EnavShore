@@ -82,3 +82,18 @@ Deploy
 Undeploy
 
 	mvn jboss-as:undeploy
+
+## Remote configuration and deployment ##
+
+To configure and deploy on remote JBoss instance the following propeties can be used
+
+	jboss-as.hostname
+	jboss-as.port
+	jboss-as.username
+	jboss-as.password
+	
+Examples
+
+	mvn install -Pjboss-configure -Djboss-as.hostname=appsrv-alpha.e-navigation.net
+	mvn jboss-as:deploy -Djboss-as.hostname=appsrv-alpha.e-navigation.net
+	
