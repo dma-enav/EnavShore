@@ -71,6 +71,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>dk.dma.enav</groupId>
+				<artifactId>enav-model</artifactId>
+				<version>0.1-SNAPSHOT</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -84,6 +89,11 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.jcip</groupId>
+			<artifactId>jcip-annotations</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 
@@ -113,6 +123,24 @@
 					<wtpapplicationxml>true</wtpapplicationxml>
 					<wtpversion>2.0</wtpversion>
 					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+					<doctitle>EnavShore ${project.version}</doctitle>
+					<windowtitle>EnavShore</windowtitle>
+					<aggregate>true</aggregate>
+					<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+					<docletArtifact>
+						<groupId>org.umlgraph</groupId>
+						<artifactId>doclet</artifactId>
+						<version>5.1</version>
+					</docletArtifact>
+					<additionalparam>-all -inferrel -inferdep -quiet -hide java.* -collpackages java.util.* -qualify -postfixpackage
+						-nodefontsize 9 -nodefontpackagesize 7 -outputencoding utf8</additionalparam>
 				</configuration>
 			</plugin>
 		</plugins>
