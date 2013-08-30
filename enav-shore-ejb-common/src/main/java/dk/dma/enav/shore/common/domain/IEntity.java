@@ -5,11 +5,9 @@ import java.io.Serializable;
 /**
  * Interface for all entities
  */
-public interface IEntity extends Serializable {
+public interface IEntity<K> extends Serializable {
 
-    Integer getId();
-
-    void setId(Integer id);
+    K getId();
 
     boolean isNew();
 

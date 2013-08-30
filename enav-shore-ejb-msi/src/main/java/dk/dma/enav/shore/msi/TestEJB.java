@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dk.dma.enav.shore.msi.domain.MsiMessage;
+import dk.dma.enav.shore.msi.domain.NavwarnMessage;
 
 @Stateless
 public class TestEJB {
@@ -18,7 +18,14 @@ public class TestEJB {
     protected EntityManager em;
 
     public void helloworld() {
-        MsiMessage message = new MsiMessage();
+        NavwarnMessage message = new NavwarnMessage();
+        message.setGeneralArea("BALTIC SEA");
+        message.setLocality("GOTLAND");
+        
+        
+        
+        
+        
         em.persist(message);
         
         LOG.info("id: " + message.getId());
