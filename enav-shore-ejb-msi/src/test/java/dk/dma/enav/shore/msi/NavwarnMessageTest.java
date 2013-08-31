@@ -16,10 +16,10 @@ import org.junit.runner.RunWith;
  * Cool!!!!!
  */
 
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 public class NavwarnMessageTest {
 
-    @Deployment
+    //@Deployment
     public static JavaArchive createDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "NavwarnMessageTest.jar");
         jar.addClass(Test2EJB.class);
@@ -29,10 +29,10 @@ public class NavwarnMessageTest {
         return jar;
     }
     
-    @EJB
+    //@EJB
     Test2EJB test2EJB;
 
-    @Test
+    //@Test
     public void createTest() {
         System.out.println("Hello world: " + test2EJB);
         test2EJB.hello();
