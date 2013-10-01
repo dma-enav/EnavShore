@@ -97,3 +97,15 @@ Examples
 	mvn install -Pjboss-configure -Djboss-as.hostname=appsrv-alpha.e-navigation.net
 	mvn jboss-as:deploy -Djboss-as.hostname=appsrv-alpha.e-navigation.net
 	
+## Testing ##
+
+Arquillian tests using a remote container must be named
+
+	*TestRemote.java
+	
+They are run using
+
+	mvn clean test -Parq-jbossas-remote
+	
+
+	
