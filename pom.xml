@@ -30,10 +30,8 @@
 	</repositories>
 
 	<modules>
-		<module>enav-shore-ejb-common</module>
-		<module>enav-shore-ejb-msi</module>
-		<module>enav-shore-web-msi</module>
-		<module>enav-shore-ear</module>
+		<module>enav-shore-common</module>
+		<module>enav-shore-msi</module>
 	</modules>
 
 	<properties>
@@ -45,23 +43,17 @@
 		<version.ear.plugin>2.8</version.ear.plugin>
 		<version.ejb.plugin>2.3</version.ejb.plugin>
 		<version.war.plugin>2.3</version.war.plugin>
+		<version.servlet.api>2.5</version.servlet.api>
 		<maven.compiler.target>1.7</maven.compiler.target>
-		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.source>1.7</maven.compiler.source>		
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>dk.dma.enav.shore</groupId>
-				<artifactId>enav-shore-web-msi</artifactId>
+				<artifactId>enav-shore-common</artifactId>
 				<version>0.1-SNAPSHOT</version>
-				<type>war</type>
-			</dependency>
-			<dependency>
-				<groupId>dk.dma.enav.shore</groupId>
-				<artifactId>enav-shore-ejb-msi</artifactId>
-				<version>0.1-SNAPSHOT</version>
-				<type>ejb</type>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.spec</groupId>
@@ -70,15 +62,15 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<dependency>
-				<groupId>dk.dma.enav</groupId>
-				<artifactId>enav-model</artifactId>
-				<version>0.1-SNAPSHOT</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>dk.dma.enav</groupId>
+			<artifactId>enav-model</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -94,10 +86,67 @@
 			<artifactId>jcip-annotations</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.transaction</groupId>
+			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>1.1.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet</artifactId>
+            <version>1.1.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-arquillian-container-remote</artifactId>
+            <version>${version.jboss.as}</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${version.war.plugin}</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${version.compiler.plugin}</version>
@@ -112,6 +161,13 @@
 				<version>${version.jboss.maven.plugin}</version>
 				<configuration>
 					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>${version.ejb.plugin}</version>
+				<configuration>
+					<ejbVersion>3.1</ejbVersion>
 				</configuration>
 			</plugin>
 			<plugin>

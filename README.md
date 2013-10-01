@@ -1,6 +1,6 @@
 # EnavShore #
 
-E-navigation shore service applications
+E-navigation shore service collection
 
 ## Prerequisites ##
 

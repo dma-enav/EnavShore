@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>dk.dma.enav.shore</groupId>
+		<artifactId>enav-shore-parent</artifactId>
+		<version>0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>enav-shore-msi</artifactId>
+	<name>EnavShore msi web application</name>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>dk.dma.enav.shore</groupId>
+			<artifactId>enav-shore-common</artifactId>
+		</dependency>
+	</dependencies>
+
+	<!-- Default properties -->
+	<properties>
+		<msi.database.url>jdbc:mysql://localhost:3306/msi</msi.database.url>
+		<msi.database.user>msi</msi.database.user>
+		<msi.database.password>msi</msi.database.password>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>jboss-configure</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jboss.as.plugins</groupId>
+						<artifactId>jboss-as-maven-plugin</artifactId>
+						<version>${version.jboss.maven.plugin}</version>
+						<executions>
+							<execution>
+								<!-- Add datasource -->
+								<id>add-datasource</id>
+								<phase>install</phase>
+								<goals>
+									<goal>add-resource</goal>
+								</goals>
+								<configuration>
+									<address>subsystem=datasources,data-source=java:jboss/datasources/msiDS</address>
+									<resource>
+										<enable-resource>true</enable-resource>
+										<properties>
+											<jndi-name>java:jboss/datasources/msiDS</jndi-name>
+											<connection-url>${msi.database.url}</connection-url>
+											<driver-name>mysql</driver-name>
+											<user-name>${msi.database.user}</user-name>
+											<password>${msi.database.password}</password>
+											<pool-name>msiPool</pool-name>
+											<enabled>true</enabled>
+											<enable>true</enable>
+										</properties>
+									</resource>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>${version.jboss.maven.plugin}</version>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
