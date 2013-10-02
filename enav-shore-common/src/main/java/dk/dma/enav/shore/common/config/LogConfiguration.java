@@ -13,30 +13,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.service;
+package dk.dma.enav.shore.common.config;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.io.Serializable;
+
+import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.InjectionPoint;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import dk.dma.enav.shore.msi.domain.NavwarnMessage;
+public class LogConfiguration implements Serializable {
 
-@Stateless
-public class MessageServiceImpl implements MessageService {
-    
-    @Inject
-    private Logger LOG;
-    
-    @PersistenceContext(unitName = "msi")
-    protected EntityManager em;
+    private static final long serialVersionUID = 5538000455989826397L;
 
-    @Override
-    public void create(NavwarnMessage navwarnMessage) {
-        LOG.info("Creating navwarn message");
-        em.persist(navwarnMessage);
+    @Produces
+    public Logger getLogger(InjectionPoint injectionPoint) {
+        return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass());
     }
 
 }
