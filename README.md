@@ -29,6 +29,7 @@ TODO
 
 To configure data sources and other resources run
 
+	cd enav-shore-services
 	mvn install -Pjboss-configure
 
 The resources are configured with properties that needs to be defined. E.g:
@@ -75,6 +76,8 @@ Example:
 
 ## Deployment ##
 
+The deployments are done from within the `enav-shore-services` folder
+
 Deploy
 
 	mvn jboss-as:deploy
@@ -106,6 +109,4 @@ Arquillian tests using a remote container must be named
 They are run using
 
 	mvn clean test -Parq-jbossas-remote
-	
-
 	

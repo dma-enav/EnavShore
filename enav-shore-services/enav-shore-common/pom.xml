@@ -5,13 +5,13 @@
 
 	<parent>
 		<groupId>dk.dma.enav.shore</groupId>
-		<artifactId>enav-shore-parent</artifactId>
+		<artifactId>enav-shore-services-parent</artifactId>
 		<version>0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>enav-shore-common</artifactId>
-	<name>EnavShore ejb common</name>
+	<name>EnavShore services common</name>
 
 </project>
 
