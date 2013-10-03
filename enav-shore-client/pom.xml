@@ -13,4 +13,12 @@
 	<name>EnavShore client library</name>
 	<packaging>jar</packaging>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>2.3</version>
+		</dependency>
+	</dependencies>
+
 </project>

@@ -13,20 +13,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.service;
+package dk.dma.enav.shore.msi.rest;
 
-import java.util.List;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-import javax.ejb.Remote;
+@ApplicationPath("/rest")
+public class RestApplication extends Application {
 
-import dk.dma.enav.shore.msi.domain.Message;
-import dk.dma.enav.shore.msi.domain.NavwarnMessage;
-
-@Remote
-public interface MessageService {
-    
-    List<Message> getAll();
-    
-    void create(NavwarnMessage navwarnMessage);
-    
 }

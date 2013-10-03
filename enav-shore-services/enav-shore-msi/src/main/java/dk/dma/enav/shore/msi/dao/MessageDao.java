@@ -13,20 +13,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.service;
+package dk.dma.enav.shore.msi.dao;
 
-import java.util.List;
+import javax.ejb.Local;
 
-import javax.ejb.Remote;
+import dk.dma.enav.shore.common.dao.Dao;
 
-import dk.dma.enav.shore.msi.domain.Message;
-import dk.dma.enav.shore.msi.domain.NavwarnMessage;
+@Local
+public interface MessageDao extends Dao {
 
-@Remote
-public interface MessageService {
-    
-    List<Message> getAll();
-    
-    void create(NavwarnMessage navwarnMessage);
-    
 }

@@ -13,20 +13,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.service;
+package dk.dma.enav.shore.common.rest;
 
-import java.util.List;
+import javax.ejb.EJB;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
-import javax.ejb.Remote;
+import dk.dma.enav.shore.common.status.StatusBean;
 
-import dk.dma.enav.shore.msi.domain.Message;
-import dk.dma.enav.shore.msi.domain.NavwarnMessage;
-
-@Remote
-public interface MessageService {
+@Path("/")
+public class StatusRestService {
     
-    List<Message> getAll();
+    @EJB
+    private StatusBean statusBean;
+
+    public StatusRestService() {
+        
+    }
     
-    void create(NavwarnMessage navwarnMessage);
-    
+    @GET
+    @Path("/status")
+    public String status() {
+        return statusBean.getStatus();
+    }
+
 }

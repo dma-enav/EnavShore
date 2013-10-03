@@ -15,17 +15,13 @@
  */
 package dk.dma.enav.shore.common.config;
 
-import java.io.Serializable;
-
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LogConfiguration implements Serializable {
-
-    private static final long serialVersionUID = 5538000455989826397L;
+public class LogConfiguration {
 
     @Produces
     public Logger getLogger(InjectionPoint injectionPoint) {

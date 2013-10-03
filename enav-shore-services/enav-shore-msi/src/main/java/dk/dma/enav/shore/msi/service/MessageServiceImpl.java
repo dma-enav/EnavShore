@@ -15,28 +15,36 @@
  */
 package dk.dma.enav.shore.msi.service;
 
+import java.util.List;
+
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.slf4j.Logger;
 
+import dk.dma.enav.shore.msi.dao.MessageDao;
+import dk.dma.enav.shore.msi.domain.Message;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
 
 @Stateless
 public class MessageServiceImpl implements MessageService {
     
     @Inject
-    private Logger LOG;
+    private Logger log;
     
-    @PersistenceContext(unitName = "msi")
-    protected EntityManager em;
-
+    @EJB
+    private MessageDao messageDao;
+    
     @Override
     public void create(NavwarnMessage navwarnMessage) {
-        LOG.info("Creating navwarn message");
-        em.persist(navwarnMessage);
+        log.info("Creating navwarn message");
+        messageDao.saveEntity(navwarnMessage);
+    }
+
+    @Override
+    public List<Message> getAll() {
+        return messageDao.getAll(Message.class);
     }
 
 }

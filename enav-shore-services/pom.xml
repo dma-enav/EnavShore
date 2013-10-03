@@ -28,6 +28,7 @@
 		<version.ejb.plugin>2.3</version.ejb.plugin>
 		<version.war.plugin>2.3</version.war.plugin>
 		<version.servlet.api>2.5</version.servlet.api>
+		<version.resteasy>2.3.4.Final</version.resteasy>
 	</properties>
 
 	<dependencyManagement>
@@ -71,6 +72,11 @@
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ws.rs</groupId>
+			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

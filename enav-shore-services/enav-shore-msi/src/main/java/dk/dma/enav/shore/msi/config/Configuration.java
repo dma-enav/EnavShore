@@ -13,20 +13,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.service;
+package dk.dma.enav.shore.msi.config;
 
-import java.util.List;
+import javax.enterprise.inject.Produces;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 
-import javax.ejb.Remote;
+public class Configuration {
 
-import dk.dma.enav.shore.msi.domain.Message;
-import dk.dma.enav.shore.msi.domain.NavwarnMessage;
+    @Produces
+    @PersistenceContext(name = "msi")
+    EntityManager entityManager;
 
-@Remote
-public interface MessageService {
-    
-    List<Message> getAll();
-    
-    void create(NavwarnMessage navwarnMessage);
-    
+    @Produces
+    @PersistenceUnit(name = "msi")
+    EntityManagerFactory entityManagerFactory;
+
 }

@@ -13,20 +13,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.service;
+package dk.dma.enav.shore.common.status;
 
-import java.util.List;
+import javax.ejb.ConcurrencyManagement;
+import javax.ejb.ConcurrencyManagementType;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
-import javax.ejb.Remote;
-
-import dk.dma.enav.shore.msi.domain.Message;
-import dk.dma.enav.shore.msi.domain.NavwarnMessage;
-
-@Remote
-public interface MessageService {
+@Startup
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@Singleton
+public class StatusBean {
     
-    List<Message> getAll();
+
+    public StatusBean() {
+        
+    }
     
-    void create(NavwarnMessage navwarnMessage);
-    
+    public String getStatus() {
+        return "status=OK";
+    }
+
 }

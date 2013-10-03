@@ -13,20 +13,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.service;
+package dk.dma.enav.shore.common.dao;
 
 import java.util.List;
 
-import javax.ejb.Remote;
+import dk.dma.enav.shore.common.domain.IEntity;
 
-import dk.dma.enav.shore.msi.domain.Message;
-import dk.dma.enav.shore.msi.domain.NavwarnMessage;
+public interface Dao {
 
-@Remote
-public interface MessageService {
+    /**
+     * Get entity by primary key
+     * 
+     * @param clazz
+     * @param id
+     * @return
+     */
+    <E extends IEntity<?>> E getByPrimaryKey(Class<E> clazz, Object id);
+
+    /**
+     * Remove entity
+     * 
+     * @param bean
+     */
+    void remove(IEntity<?> bean);
+
+    /**
+     * Save (insert or update) the entity bean
+     * 
+     * @param entity
+     * @return entity
+     */
+    <E extends IEntity<?>> E saveEntity(E bean);
     
-    List<Message> getAll();
-    
-    void create(NavwarnMessage navwarnMessage);
-    
+    /**
+     * General purpose method to retrieve all instance of a entityType
+     * @param entityType
+     * @return
+     */
+    <E extends IEntity<?>> List<E> getAll(Class<E> entityType);
+
+
 }
