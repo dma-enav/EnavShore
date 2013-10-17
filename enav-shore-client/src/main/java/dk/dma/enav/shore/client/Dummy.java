@@ -22,15 +22,15 @@ import javax.ws.rs.client.WebTarget;
 public class Dummy {
 
     public Dummy() {
-        
+
         // Central error handling
     }
-    
+
     public static void main(String[] args) {
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target("http://localhost:8080").path("msi/rest/message/test");
         String str = target.request().get(String.class);
-        System.out.println("response from server: " + str);        
+        System.out.println("response from server: " + str);
     }
 
 }
