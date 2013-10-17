@@ -110,3 +110,17 @@ They are run using
 
 	mvn clean test -Parq-jbossas-remote
 	
+## Client module ##
+
+TODO used by clients
+
+## Webclient module ##
+
+Deploy webclient module
+
+    cd enav-shore-webclient
+    mvn clean jboss-as:deploy
+
+Access on URL
+
+    /client/
