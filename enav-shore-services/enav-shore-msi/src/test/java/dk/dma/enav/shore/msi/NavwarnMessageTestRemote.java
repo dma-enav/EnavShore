@@ -15,19 +15,25 @@
  */
 package dk.dma.enav.shore.msi;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Random;
+
 import javax.ejb.EJB;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.formatter.Formatters;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import dk.dma.enav.shore.common.domain.AbstractEntity;
+import dk.dma.enav.model.msi.MessageType;
+import dk.dma.enav.shore.common.domain.BaseEntity;
 import dk.dma.enav.shore.common.domain.IEntity;
-import dk.dma.enav.shore.msi.domain.Message;
+import dk.dma.enav.shore.msi.domain.MessageSeriesIndentifier;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
 import dk.dma.enav.shore.msi.service.MessageService;
 
@@ -36,13 +42,14 @@ public class NavwarnMessageTestRemote {
 
     @Deployment
     public static JavaArchive createDeployment() {
-        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar");
+        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "msi_test.jar");
         jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-        jar.addClass(NavwarnMessage.class);
-        jar.addClass(IEntity.class);
-        jar.addClass(AbstractEntity.class);
-        jar.addClass(Message.class);
-        jar.addClass(MessageService.class);
+        jar.addClass(MessageType.class);
+        jar.addClass(IEntity.class);    
+        jar.addClass(BaseEntity.class);
+        jar.addClass(MessageService.class);        
+        jar.addPackages(true, "dk.dma.enav.shore.msi.domain");        
+        System.out.println(jar.toString(Formatters.VERBOSE));
         return jar;
     }
 
@@ -50,10 +57,32 @@ public class NavwarnMessageTestRemote {
     private MessageService messageService;
 
     @Test
-    public void createTest() {
+    public void createNavwarnTest() throws ParseException {
         NavwarnMessage message = new NavwarnMessage();
-        message.setGeneralArea("The Sound");
-        message.setLocality("Kattegat");
+        
+        // Message series identifier
+        MessageSeriesIndentifier identifier = new MessageSeriesIndentifier();
+        identifier.setAuthority("DMA");
+        identifier.setYear(2013);
+        identifier.setNumber(new Random(System.currentTimeMillis()).nextInt(1000) + 1);
+        identifier.setType(MessageType.NAVAREA_WARNING);
+        
+        // Tie to message
+        message.setSeriesIndentifier(identifier);
+        identifier.setMessage(message);
+
+        // Message
+        message.setGeneralArea("Kattegat");
+        message.setLocality("The Sound");
+        message.getSpecificLocation().add("Copenhagen port");
+        message.getSpecificLocation().add("Langebro bridge");
+        message.getChartNumber().add("daddasd");
+        message.getIntChartNumber().add(100);
+        
+        // NavwarnMessage
+        message.setCancellationDate((new SimpleDateFormat("dd-MM-yyyy")).parse("31-12-2013"));
+        
+        
         messageService.create(message);
     }
 

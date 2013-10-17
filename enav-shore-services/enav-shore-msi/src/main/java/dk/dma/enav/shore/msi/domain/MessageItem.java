@@ -13,55 +13,49 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.model.msinm;
+package dk.dma.enav.shore.msi.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
-/**
- * FeatureType
- */
-public class MessageItem {
+import dk.dma.enav.shore.common.domain.BaseEntity;
 
+@Entity
+public class MessageItem extends BaseEntity<Integer> {
+    
+    private static final long serialVersionUID = 1L;
+    
+    private String amplifyingRemarks;
     private String keySubject;
-    private List<MessageLocation> location = new ArrayList<>();
-    private MessageCategory messageCategory;
-    private List<String> amplifyingRemarks = new ArrayList<>();
+    @ManyToOne
+    private NavwarnMessage navwarnMessage;
 
     public MessageItem() {
-
+        
     }
-
+    
+    public String getAmplifyingRemarks() {
+        return amplifyingRemarks;
+    }
+    
+    public void setAmplifyingRemarks(String amplifyingRemarks) {
+        this.amplifyingRemarks = amplifyingRemarks;
+    }
+    
     public String getKeySubject() {
         return keySubject;
     }
-
+    
     public void setKeySubject(String keySubject) {
         this.keySubject = keySubject;
     }
-
-    public List<MessageLocation> getLocation() {
-        return location;
+    
+    public NavwarnMessage getNavwarnMessage() {
+        return navwarnMessage;
     }
-
-    public void setLocation(List<MessageLocation> location) {
-        this.location = location;
+    
+    public void setNavwarnMessage(NavwarnMessage navwarnMessage) {
+        this.navwarnMessage = navwarnMessage;
     }
-
-    public MessageCategory getMessageCategory() {
-        return messageCategory;
-    }
-
-    public void setMessageCategory(MessageCategory messageCategory) {
-        this.messageCategory = messageCategory;
-    }
-
-    public List<String> getAmplifyingRemarks() {
-        return amplifyingRemarks;
-    }
-
-    public void setAmplifyingRemarks(List<String> amplifyingRemarks) {
-        this.amplifyingRemarks = amplifyingRemarks;
-    }
-
+    
 }

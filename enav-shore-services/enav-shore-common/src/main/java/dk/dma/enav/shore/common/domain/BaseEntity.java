@@ -25,7 +25,7 @@ import javax.persistence.MappedSuperclass;
  * Base class for all entity beans
  */
 @MappedSuperclass
-public abstract class AbstractEntity<K> implements IEntity<K> {
+public abstract class BaseEntity<K> implements IEntity<K> {
 
     private static final long serialVersionUID = 1L;
 

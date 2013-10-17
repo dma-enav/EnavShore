@@ -15,28 +15,51 @@
  */
 package dk.dma.enav.shore.msi.domain;
 
-import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
-import dk.dma.enav.shore.common.domain.AbstractEntity;
+import dk.dma.enav.shore.common.domain.BaseEntity;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Message extends AbstractEntity<Integer> {
+public abstract class Message extends BaseEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    private MessageSeriesIndentifier seriesIndentifier;
+    @NotNull
     private String generalArea;
+    @NotNull
     private String locality;
-    //private List<String> specificLocation = new ArrayList<>();
+    @ElementCollection
+    private List<String> specificLocation = new ArrayList<>();
+    @ElementCollection
+    private List<String> chartNumber = new ArrayList<>();
+    @ElementCollection
+    private List<Integer> intChartNumber = new ArrayList<>();
 
     public Message() {
 
     }
+    
+    public MessageSeriesIndentifier getSeriesIndentifier() {
+        return seriesIndentifier;
+    }
+    
+    public void setSeriesIndentifier(MessageSeriesIndentifier seriesIndentifier) {
+        this.seriesIndentifier = seriesIndentifier;
+    }
 
-    @Column(nullable = false)
     public String getGeneralArea() {
         return generalArea;
     }
@@ -45,7 +68,6 @@ public abstract class Message extends AbstractEntity<Integer> {
         this.generalArea = generalArea;
     }
     
-    @Column(nullable = false)
     public String getLocality() {
         return locality;
     }
@@ -53,6 +75,29 @@ public abstract class Message extends AbstractEntity<Integer> {
     public void setLocality(String locality) {
         this.locality = locality;
     }
-    
 
+    public List<String> getSpecificLocation() {
+        return specificLocation;
+    }
+    
+    public void setSpecificLocation(List<String> specificLocation) {
+        this.specificLocation = specificLocation;
+    }
+    
+    public List<String> getChartNumber() {
+        return chartNumber;
+    }
+    
+    public void setChartNumber(List<String> chartNumber) {
+        this.chartNumber = chartNumber;
+    }
+    
+    public List<Integer> getIntChartNumber() {
+        return intChartNumber;
+    }
+    
+    public void setIntChartNumber(List<Integer> intChartNumber) {
+        this.intChartNumber = intChartNumber;
+    }
+    
 }

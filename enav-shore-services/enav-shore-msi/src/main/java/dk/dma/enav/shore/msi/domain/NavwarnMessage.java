@@ -15,10 +15,12 @@
  */
 package dk.dma.enav.shore.msi.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class NavwarnMessage extends Message {
@@ -26,11 +28,12 @@ public class NavwarnMessage extends Message {
     private static final long serialVersionUID = 1L;
     
     private Date cancellationDate;
+    @OneToMany
+    private List<MessageItem> messageItem = new ArrayList<>();
     
     public NavwarnMessage() {        
     }
 
-    @Column(nullable = true)
     public Date getCancellationDate() {
         return cancellationDate;
     }
@@ -38,5 +41,13 @@ public class NavwarnMessage extends Message {
     public void setCancellationDate(Date cancellationDate) {
         this.cancellationDate = cancellationDate;
     }
-
+    
+    public List<MessageItem> getMessageItem() {
+        return messageItem;
+    }
+    
+    public void setMessageItem(List<MessageItem> messageItem) {
+        this.messageItem = messageItem;
+    }
+    
 }
