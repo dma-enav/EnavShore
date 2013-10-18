@@ -37,9 +37,9 @@ public class MessageServiceImpl implements MessageService {
     private MessageDao messageDao;
     
     @Override
-    public void create(NavwarnMessage navwarnMessage) {
+    public NavwarnMessage create(NavwarnMessage navwarnMessage) {
         log.info("Creating navwarn message");
-        messageDao.saveEntity(navwarnMessage);
+        return messageDao.saveEntity(navwarnMessage);
     }
 
     @Override

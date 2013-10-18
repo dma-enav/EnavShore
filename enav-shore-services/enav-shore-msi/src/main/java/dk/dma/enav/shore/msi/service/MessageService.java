@@ -27,6 +27,6 @@ public interface MessageService {
     
     List<Message> getAll();
     
-    void create(NavwarnMessage navwarnMessage);
+    NavwarnMessage create(NavwarnMessage navwarnMessage);
     
 }

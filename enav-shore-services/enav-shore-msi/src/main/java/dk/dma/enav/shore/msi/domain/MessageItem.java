@@ -15,9 +15,13 @@
  */
 package dk.dma.enav.shore.msi.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +38,8 @@ public class MessageItem extends BaseEntity<Integer> {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private MessageCategory category;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<MessageLocation> location = new ArrayList<>();
     @ManyToOne
     private NavwarnMessage navwarnMessage;
 
@@ -63,6 +69,14 @@ public class MessageItem extends BaseEntity<Integer> {
 
     public void setCategory(MessageCategory category) {
         this.category = category;
+    }
+    
+    public List<MessageLocation> getLocation() {
+        return location;
+    }
+    
+    public void setLocation(List<MessageLocation> location) {
+        this.location = location;
     }
 
     public NavwarnMessage getNavwarnMessage() {

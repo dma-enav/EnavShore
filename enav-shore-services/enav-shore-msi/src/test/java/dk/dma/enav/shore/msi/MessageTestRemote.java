@@ -17,6 +17,7 @@ package dk.dma.enav.shore.msi;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 import javax.ejb.EJB;
@@ -37,12 +38,15 @@ import dk.dma.enav.shore.common.domain.BaseEntity;
 import dk.dma.enav.shore.common.domain.IEntity;
 import dk.dma.enav.shore.msi.domain.MessageCategory;
 import dk.dma.enav.shore.msi.domain.MessageItem;
+import dk.dma.enav.shore.msi.domain.MessageLocation;
+import dk.dma.enav.shore.msi.domain.MessageLocation.LocationType;
 import dk.dma.enav.shore.msi.domain.MessageSeriesIdentifier;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
+import dk.dma.enav.shore.msi.domain.Point;
 import dk.dma.enav.shore.msi.service.MessageService;
 
 @RunWith(Arquillian.class)
-public class NavwarnMessageTestRemote {
+public class MessageTestRemote {
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -85,6 +89,7 @@ public class NavwarnMessageTestRemote {
         message.getSpecificLocation().add("Langebro bridge");
         message.getChartNumber().add("daddasd");
         message.getIntChartNumber().add(100);
+        message.setIssueDate(new Date(System.currentTimeMillis()));
         
         // NavwarnMessage
         message.setCancellationDate((new SimpleDateFormat("dd-MM-yyyy")).parse("31-12-2013"));
@@ -93,11 +98,23 @@ public class NavwarnMessageTestRemote {
         MessageItem item1 = new MessageItem();
         item1.setKeySubject("Bridge has collapsed");
         item1.setAmplifyingRemarks("Debris in water");
+        
         MessageCategory cat1 = new MessageCategory();
         cat1.setGeneralCategory(GeneralCategory.AIDS_TO_NAVIGATION);
         cat1.setSpecificCategory(SpecificCategory.BUOY);
         cat1.setOtherCategory("Unlit");
         item1.setCategory(cat1);
+        
+        MessageLocation loc1 = new MessageLocation(LocationType.POLYGON);
+        loc1.addPoint(new Point(56.120, 12.1684));
+        loc1.addPoint(new Point(55.877, 12.622));
+        loc1.addPoint(new Point(55.962, 12.576));
+        item1.getLocation().add(loc1);
+        MessageLocation loc2 = new MessageLocation(LocationType.POLYGON);
+        loc2.addPoint(new Point(57.120, 13.1684));
+        loc2.addPoint(new Point(57.877, 13.622));
+        loc2.addPoint(new Point(57.962, 13.576));
+        item1.getLocation().add(loc2);
         
         MessageItem item2 = new MessageItem();
         item2.setKeySubject("Plane crash");
@@ -112,8 +129,15 @@ public class NavwarnMessageTestRemote {
         message.getMessageItem().add(item1);
         message.getMessageItem().add(item2);
         
+        // Create navwarn message
+        message = messageService.create(message);
         
-        messageService.create(message);
+        System.out.println("Message created with id: " + message.getId());
+        
+        // Get navwarn message and check fields
+        
+        
     }
+    
 
 }

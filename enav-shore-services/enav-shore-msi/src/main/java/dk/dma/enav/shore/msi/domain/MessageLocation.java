@@ -1,0 +1,83 @@
+/* Copyright (c) 2011 Danish Maritime Authority
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this library.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package dk.dma.enav.shore.msi.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.OrderBy;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
+import dk.dma.enav.shore.common.domain.BaseEntity;
+
+@Entity
+public class MessageLocation extends BaseEntity<Integer> {
+
+    private static final long serialVersionUID = 1L;
+
+    public enum LocationType {
+        POINT, CIRCLE, POLYGON, POLYLINE
+    }
+
+    @NotNull
+    private LocationType type;
+    @NotNull
+    @ElementCollection
+    @OrderBy("num")
+    private List<Point> points;
+
+    public MessageLocation() {
+
+    }
+
+    public MessageLocation(LocationType type) {
+        this.type = type;
+    }
+
+    public LocationType getType() {
+        return type;
+    }
+
+    public void setType(LocationType type) {
+        this.type = type;
+    }
+
+    public List<Point> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<Point> points) {
+        this.points = points;
+        if (points != null && points.size() > 0) {
+            for (int i=0; i < points.size(); i++) {
+                points.get(i).setNum(i + 1);   
+            }
+        }       
+    }
+    
+    @Transient
+    public void addPoint(Point p) {
+        if (this.points == null) {
+            this.points = new ArrayList<>();
+        }
+        p.setNum(this.points.size() + 1);
+        this.points.add(p);
+    }
+
+}

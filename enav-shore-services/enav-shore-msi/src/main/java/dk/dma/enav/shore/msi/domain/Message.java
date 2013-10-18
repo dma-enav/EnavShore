@@ -16,6 +16,7 @@
 package dk.dma.enav.shore.msi.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -47,6 +48,8 @@ public abstract class Message extends BaseEntity<Integer> {
     private List<String> chartNumber = new ArrayList<>();
     @ElementCollection
     private List<Integer> intChartNumber = new ArrayList<>();
+    @NotNull
+    private Date issueDate;
 
     public Message() {
 
@@ -98,6 +101,14 @@ public abstract class Message extends BaseEntity<Integer> {
     
     public void setIntChartNumber(List<Integer> intChartNumber) {
         this.intChartNumber = intChartNumber;
+    }
+    
+    public Date getIssueDate() {
+        return issueDate;
+    }
+    
+    public void setIssueDate(Date issueDate) {
+        this.issueDate = issueDate;
     }
     
 }
