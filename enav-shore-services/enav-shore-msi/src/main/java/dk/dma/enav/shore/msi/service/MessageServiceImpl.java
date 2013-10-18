@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import dk.dma.enav.shore.msi.dao.MessageDao;
 import dk.dma.enav.shore.msi.domain.Message;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
+import dk.dma.enav.shore.msi.domain.NoticeMessage;
 
 @Stateless
 public class MessageServiceImpl implements MessageService {
@@ -40,6 +41,12 @@ public class MessageServiceImpl implements MessageService {
     public NavwarnMessage create(NavwarnMessage navwarnMessage) {
         log.info("Creating navwarn message");
         return messageDao.saveEntity(navwarnMessage);
+    }
+    
+    @Override
+    public NoticeMessage create(NoticeMessage noticeMessage) {
+        log.info("Creating notice message");
+        return messageDao.saveEntity(noticeMessage);
     }
 
     @Override

@@ -21,6 +21,7 @@ import javax.ejb.Remote;
 
 import dk.dma.enav.shore.msi.domain.Message;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
+import dk.dma.enav.shore.msi.domain.NoticeMessage;
 
 @Remote
 public interface MessageService {
@@ -28,5 +29,7 @@ public interface MessageService {
     List<Message> getAll();
     
     NavwarnMessage create(NavwarnMessage navwarnMessage);
+    
+    NoticeMessage create(NoticeMessage noticeMessage);
     
 }

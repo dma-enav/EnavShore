@@ -39,6 +39,7 @@ import dk.dma.enav.shore.common.domain.IEntity;
 import dk.dma.enav.shore.msi.domain.MessageCategory;
 import dk.dma.enav.shore.msi.domain.MessageItem;
 import dk.dma.enav.shore.msi.domain.MessageLocation;
+import dk.dma.enav.shore.msi.domain.NoticeMessage;
 import dk.dma.enav.shore.msi.domain.MessageLocation.LocationType;
 import dk.dma.enav.shore.msi.domain.MessageSeriesIdentifier;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
@@ -56,10 +57,10 @@ public class MessageTestRemote {
         jar.addClass(dk.dma.enav.model.msi.MessageCategory.class);
         jar.addClass(dk.dma.enav.model.msi.GeneralCategory.class);
         jar.addClass(SpecificCategory.class);
-        jar.addClass(IEntity.class);    
+        jar.addClass(IEntity.class);
         jar.addClass(BaseEntity.class);
-        jar.addClass(MessageService.class);        
-        jar.addPackages(true, "dk.dma.enav.shore.msi.domain");        
+        jar.addClass(MessageService.class);
+        jar.addPackages(true, "dk.dma.enav.shore.msi.domain");
         System.out.println(jar.toString(Formatters.VERBOSE));
         return jar;
     }
@@ -70,14 +71,14 @@ public class MessageTestRemote {
     @Test
     public void createNavwarnTest() throws ParseException {
         NavwarnMessage message = new NavwarnMessage();
-        
+
         // Message series identifier
         MessageSeriesIdentifier identifier = new MessageSeriesIdentifier();
         identifier.setAuthority("DMA");
         identifier.setYear(2013);
         identifier.setNumber(new Random(System.currentTimeMillis()).nextInt(1000) + 1);
         identifier.setType(MessageType.NAVAREA_WARNING);
-        
+
         // Tie to message
         message.setSeriesIndentifier(identifier);
         identifier.setMessage(message);
@@ -90,21 +91,21 @@ public class MessageTestRemote {
         message.getChartNumber().add("daddasd");
         message.getIntChartNumber().add(100);
         message.setIssueDate(new Date(System.currentTimeMillis()));
-        
+
         // NavwarnMessage
         message.setCancellationDate((new SimpleDateFormat("dd-MM-yyyy")).parse("31-12-2013"));
-        
+
         // MessageItem 's
         MessageItem item1 = new MessageItem();
         item1.setKeySubject("Bridge has collapsed");
         item1.setAmplifyingRemarks("Debris in water");
-        
+
         MessageCategory cat1 = new MessageCategory();
         cat1.setGeneralCategory(GeneralCategory.AIDS_TO_NAVIGATION);
         cat1.setSpecificCategory(SpecificCategory.BUOY);
         cat1.setOtherCategory("Unlit");
         item1.setCategory(cat1);
-        
+
         MessageLocation loc1 = new MessageLocation(LocationType.POLYGON);
         loc1.addPoint(new Point(56.120, 12.1684));
         loc1.addPoint(new Point(55.877, 12.622));
@@ -115,7 +116,7 @@ public class MessageTestRemote {
         loc2.addPoint(new Point(57.877, 13.622));
         loc2.addPoint(new Point(57.962, 13.576));
         item1.getLocation().add(loc2);
-        
+
         MessageItem item2 = new MessageItem();
         item2.setKeySubject("Plane crash");
         item2.setAmplifyingRemarks("Debris in water");
@@ -124,20 +125,52 @@ public class MessageTestRemote {
         cat2.setSpecificCategory(SpecificCategory.WRECK);
         cat2.setOtherCategory("Adrift");
         item2.setCategory(cat2);
-        
+
         // Tie message items to navwarn message
         message.getMessageItem().add(item1);
         message.getMessageItem().add(item2);
-        
+
         // Create navwarn message
         message = messageService.create(message);
-        
-        System.out.println("Message created with id: " + message.getId());
-        
+
+        System.out.println("NavwarnMessage created with id: " + message.getId());
+
         // Get navwarn message and check fields
+    }
+
+    @Test
+    public void createNoticeMessage() {
+        NoticeMessage message = new NoticeMessage();
+
+        // Message series identifier
+        MessageSeriesIdentifier identifier = new MessageSeriesIdentifier();
+        identifier.setAuthority("DMA");
+        identifier.setYear(2013);
+        identifier.setNumber(new Random(System.currentTimeMillis()).nextInt(1000) + 1);
+        identifier.setType(MessageType.TEMPORARY_NOTICE);
+
+        // Tie to message
+        message.setSeriesIndentifier(identifier);
+        identifier.setMessage(message);
         
+        // Message
+        message.setGeneralArea("Kattegat");
+        message.setLocality("The Sound");
+        message.getSpecificLocation().add("Copenhagen port");
+        message.getSpecificLocation().add("Langebro bridge");
+        message.getChartNumber().add("daddasd");
+        message.getIntChartNumber().add(100);
+        message.setIssueDate(new Date(System.currentTimeMillis()));
+        
+        // Notice message specifics
+        message.setAuthority("DMA");
+        message.getLightsListNumbers().add("DA-213123");
+        message.setAmplifyingRemarks("Avoid any entry");
+        
+        message = messageService.create(message);
+        
+        System.out.println("NoticeMessage created with id: " + message.getId());
         
     }
-    
 
 }
