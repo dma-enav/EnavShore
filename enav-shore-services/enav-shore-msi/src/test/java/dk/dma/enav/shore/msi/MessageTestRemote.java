@@ -33,17 +33,21 @@ import org.junit.runner.RunWith;
 
 import dk.dma.enav.model.msi.GeneralCategory;
 import dk.dma.enav.model.msi.MessageType;
+import dk.dma.enav.model.msi.NoticeVerb;
 import dk.dma.enav.model.msi.SpecificCategory;
 import dk.dma.enav.shore.common.domain.BaseEntity;
 import dk.dma.enav.shore.common.domain.IEntity;
 import dk.dma.enav.shore.msi.domain.MessageCategory;
 import dk.dma.enav.shore.msi.domain.MessageItem;
 import dk.dma.enav.shore.msi.domain.MessageLocation;
+import dk.dma.enav.shore.msi.domain.NoticeElement;
 import dk.dma.enav.shore.msi.domain.NoticeMessage;
+import dk.dma.enav.shore.msi.domain.PermanentItem;
 import dk.dma.enav.shore.msi.domain.MessageLocation.LocationType;
 import dk.dma.enav.shore.msi.domain.MessageSeriesIdentifier;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
 import dk.dma.enav.shore.msi.domain.Point;
+import dk.dma.enav.shore.msi.domain.TempPreliminaryItem;
 import dk.dma.enav.shore.msi.service.MessageService;
 
 @RunWith(Arquillian.class)
@@ -56,6 +60,7 @@ public class MessageTestRemote {
         jar.addClass(dk.dma.enav.model.msi.MessageType.class);
         jar.addClass(dk.dma.enav.model.msi.MessageCategory.class);
         jar.addClass(dk.dma.enav.model.msi.GeneralCategory.class);
+        jar.addClass(dk.dma.enav.model.msi.NoticeVerb.class);
         jar.addClass(SpecificCategory.class);
         jar.addClass(IEntity.class);
         jar.addClass(BaseEntity.class);
@@ -166,6 +171,35 @@ public class MessageTestRemote {
         message.setAuthority("DMA");
         message.getLightsListNumbers().add("DA-213123");
         message.setAmplifyingRemarks("Avoid any entry");
+        
+        PermanentItem permanentItem = new PermanentItem();
+        permanentItem.setAmplifyingRemarks(0);
+        permanentItem.setChartNumber("DK-1213");
+        permanentItem.setHorizontalDatum("FSdasd");
+        permanentItem.setInternationalNumber(213);
+        MessageLocation pitLoc = new MessageLocation(LocationType.POINT);
+        pitLoc.addPoint(new Point(57, 12));
+        permanentItem.setLocation(pitLoc);
+        permanentItem.setLastUpdate(identifier);
+        
+        NoticeElement noticeElement = new NoticeElement();
+        noticeElement.setAmplifyingNote("Hello world");
+        noticeElement.setFeatureOrCharacteristic("Bridge");
+        noticeElement.getGraphicalRepresentation().add("sadasd");
+        noticeElement.getGraphicalRepresentation().add("basasdas");
+        noticeElement.setLocation(pitLoc);
+        noticeElement.setNoticeVerb(NoticeVerb.REPLACE);
+        
+        permanentItem.setNoticeElement(noticeElement);
+        
+        message.getPermanentItem().add(permanentItem);
+        
+        TempPreliminaryItem preliminaryItem = new TempPreliminaryItem();
+        preliminaryItem.setLocation(pitLoc);
+        preliminaryItem.getGraphicalRepresentation().add("sdad");
+        preliminaryItem.setItemDescription("dasdadd");
+        
+        message.getTempPreliminaryItem().add(preliminaryItem);        
         
         message = messageService.create(message);
         

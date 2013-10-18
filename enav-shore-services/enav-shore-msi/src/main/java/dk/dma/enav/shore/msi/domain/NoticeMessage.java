@@ -18,10 +18,12 @@ package dk.dma.enav.shore.msi.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -33,6 +35,10 @@ public class NoticeMessage extends Message {
     private List<String> lightsListNumbers = new ArrayList<>();
     private String authority;
     private String amplifyingRemarks;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<PermanentItem> permanentItem = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<TempPreliminaryItem> tempPreliminaryItem = new ArrayList<>();
 
     public NoticeMessage() {
 
@@ -60,6 +66,22 @@ public class NoticeMessage extends Message {
 
     public void setAmplifyingRemarks(String amplifyingRemarks) {
         this.amplifyingRemarks = amplifyingRemarks;
+    }
+    
+    public List<PermanentItem> getPermanentItem() {
+        return permanentItem;
+    }
+    
+    public void setPermanentItem(List<PermanentItem> permanentItem) {
+        this.permanentItem = permanentItem;
+    }
+    
+    public List<TempPreliminaryItem> getTempPreliminaryItem() {
+        return tempPreliminaryItem;
+    }
+    
+    public void setTempPreliminaryItem(List<TempPreliminaryItem> tempPreliminaryItem) {
+        this.tempPreliminaryItem = tempPreliminaryItem;
     }
 
 }

@@ -17,6 +17,8 @@ package dk.dma.enav.shore.msi.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -32,6 +34,7 @@ public class MessageSeriesIdentifier extends BaseEntity<Integer> {
     private static final long serialVersionUID = 1L;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private MessageType type;
     @NotNull
     private String authority;

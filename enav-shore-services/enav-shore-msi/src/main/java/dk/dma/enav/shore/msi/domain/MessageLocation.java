@@ -20,6 +20,8 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -36,11 +38,13 @@ public class MessageLocation extends BaseEntity<Integer> {
     }
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private LocationType type;
     @NotNull
     @ElementCollection
     @OrderBy("num")
     private List<Point> points;
+    private Integer radius;
 
     public MessageLocation() {
 
@@ -56,6 +60,14 @@ public class MessageLocation extends BaseEntity<Integer> {
 
     public void setType(LocationType type) {
         this.type = type;
+    }
+    
+    public Integer getRadius() {
+        return radius;
+    }
+    
+    public void setRadius(Integer radius) {
+        this.radius = radius;
     }
 
     public List<Point> getPoints() {

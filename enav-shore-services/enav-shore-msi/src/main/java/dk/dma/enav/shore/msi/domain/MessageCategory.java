@@ -16,6 +16,8 @@
 package dk.dma.enav.shore.msi.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 import dk.dma.enav.model.msi.GeneralCategory;
@@ -28,10 +30,12 @@ public class MessageCategory extends BaseEntity<Integer> {
     private static final long serialVersionUID = 1L;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private GeneralCategory generalCategory;
     @NotNull
+    @Enumerated(EnumType.STRING)
     private SpecificCategory specificCategory;
-    @NotNull
+    @NotNull    
     private String otherCategory;
 
     public MessageCategory() {
