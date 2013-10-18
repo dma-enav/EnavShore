@@ -27,7 +27,7 @@ import dk.dma.enav.shore.common.domain.BaseEntity;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "type", "authority", "number", "year"}))
-public class MessageSeriesIndentifier extends BaseEntity<Integer> {
+public class MessageSeriesIdentifier extends BaseEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,7 @@ public class MessageSeriesIndentifier extends BaseEntity<Integer> {
     @OneToOne(mappedBy = "seriesIndentifier", cascade = CascadeType.ALL)
     private Message message;
 
-    public MessageSeriesIndentifier() {
+    public MessageSeriesIdentifier() {
 
     }
 

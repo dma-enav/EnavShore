@@ -36,7 +36,7 @@ public abstract class Message extends BaseEntity<Integer> {
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    private MessageSeriesIndentifier seriesIndentifier;
+    private MessageSeriesIdentifier seriesIndentifier;
     @NotNull
     private String generalArea;
     @NotNull
@@ -52,11 +52,11 @@ public abstract class Message extends BaseEntity<Integer> {
 
     }
     
-    public MessageSeriesIndentifier getSeriesIndentifier() {
+    public MessageSeriesIdentifier getSeriesIndentifier() {
         return seriesIndentifier;
     }
     
-    public void setSeriesIndentifier(MessageSeriesIndentifier seriesIndentifier) {
+    public void setSeriesIndentifier(MessageSeriesIdentifier seriesIndentifier) {
         this.seriesIndentifier = seriesIndentifier;
     }
 

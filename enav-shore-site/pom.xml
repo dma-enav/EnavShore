@@ -9,8 +9,8 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>enav-shore-webclient</artifactId>
-	<name>EnavShore web clients</name>
+	<artifactId>enav-shore-site</artifactId>
+	<name>EnavShore Site</name>
 	<packaging>war</packaging>
 
 	<build>

@@ -32,7 +32,7 @@
 	<modules>
 		<module>enav-shore-services</module>
 		<module>enav-shore-client</module>
-		<module>enav-shore-webclient</module>
+		<module>enav-shore-site</module>
 	</modules>
 
 	<properties>

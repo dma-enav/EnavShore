@@ -30,10 +30,14 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import dk.dma.enav.model.msi.GeneralCategory;
 import dk.dma.enav.model.msi.MessageType;
+import dk.dma.enav.model.msi.SpecificCategory;
 import dk.dma.enav.shore.common.domain.BaseEntity;
 import dk.dma.enav.shore.common.domain.IEntity;
-import dk.dma.enav.shore.msi.domain.MessageSeriesIndentifier;
+import dk.dma.enav.shore.msi.domain.MessageCategory;
+import dk.dma.enav.shore.msi.domain.MessageItem;
+import dk.dma.enav.shore.msi.domain.MessageSeriesIdentifier;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
 import dk.dma.enav.shore.msi.service.MessageService;
 
@@ -44,7 +48,10 @@ public class NavwarnMessageTestRemote {
     public static JavaArchive createDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "msi_test.jar");
         jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-        jar.addClass(MessageType.class);
+        jar.addClass(dk.dma.enav.model.msi.MessageType.class);
+        jar.addClass(dk.dma.enav.model.msi.MessageCategory.class);
+        jar.addClass(dk.dma.enav.model.msi.GeneralCategory.class);
+        jar.addClass(SpecificCategory.class);
         jar.addClass(IEntity.class);    
         jar.addClass(BaseEntity.class);
         jar.addClass(MessageService.class);        
@@ -61,7 +68,7 @@ public class NavwarnMessageTestRemote {
         NavwarnMessage message = new NavwarnMessage();
         
         // Message series identifier
-        MessageSeriesIndentifier identifier = new MessageSeriesIndentifier();
+        MessageSeriesIdentifier identifier = new MessageSeriesIdentifier();
         identifier.setAuthority("DMA");
         identifier.setYear(2013);
         identifier.setNumber(new Random(System.currentTimeMillis()).nextInt(1000) + 1);
@@ -81,6 +88,29 @@ public class NavwarnMessageTestRemote {
         
         // NavwarnMessage
         message.setCancellationDate((new SimpleDateFormat("dd-MM-yyyy")).parse("31-12-2013"));
+        
+        // MessageItem 's
+        MessageItem item1 = new MessageItem();
+        item1.setKeySubject("Bridge has collapsed");
+        item1.setAmplifyingRemarks("Debris in water");
+        MessageCategory cat1 = new MessageCategory();
+        cat1.setGeneralCategory(GeneralCategory.AIDS_TO_NAVIGATION);
+        cat1.setSpecificCategory(SpecificCategory.BUOY);
+        cat1.setOtherCategory("Unlit");
+        item1.setCategory(cat1);
+        
+        MessageItem item2 = new MessageItem();
+        item2.setKeySubject("Plane crash");
+        item2.setAmplifyingRemarks("Debris in water");
+        MessageCategory cat2 = new MessageCategory();
+        cat2.setGeneralCategory(GeneralCategory.DANGEROUS_WRECKS);
+        cat2.setSpecificCategory(SpecificCategory.WRECK);
+        cat2.setOtherCategory("Adrift");
+        item2.setCategory(cat2);
+        
+        // Tie message items to navwarn message
+        message.getMessageItem().add(item1);
+        message.getMessageItem().add(item2);
         
         
         messageService.create(message);

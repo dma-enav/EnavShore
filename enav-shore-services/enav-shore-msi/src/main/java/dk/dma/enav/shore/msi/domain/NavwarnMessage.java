@@ -17,18 +17,26 @@ package dk.dma.enav.shore.msi.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class NavwarnMessage extends Message {
 
     private static final long serialVersionUID = 1L;
     
-    private Date cancellationDate;
-    @OneToMany
+    private Date cancellationDate;    
+    @ElementCollection
+    private Set<MessageSeriesIdentifier> cancellations = new HashSet<>();
+    @NotNull
+    @OneToMany(cascade = CascadeType.ALL)
     private List<MessageItem> messageItem = new ArrayList<>();
     
     public NavwarnMessage() {        
@@ -40,6 +48,14 @@ public class NavwarnMessage extends Message {
     
     public void setCancellationDate(Date cancellationDate) {
         this.cancellationDate = cancellationDate;
+    }
+    
+    public Set<MessageSeriesIdentifier> getCancellations() {
+        return cancellations;
+    }
+    
+    public void setCancellations(Set<MessageSeriesIdentifier> cancellations) {
+        this.cancellations = cancellations;
     }
     
     public List<MessageItem> getMessageItem() {

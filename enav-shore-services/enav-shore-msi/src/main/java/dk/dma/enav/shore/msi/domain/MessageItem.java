@@ -15,47 +15,62 @@
  */
 package dk.dma.enav.shore.msi.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
 @Entity
 public class MessageItem extends BaseEntity<Integer> {
-    
+
     private static final long serialVersionUID = 1L;
-    
-    private String amplifyingRemarks;
+
+    @NotNull
     private String keySubject;
+    private String amplifyingRemarks;
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    private MessageCategory category;
     @ManyToOne
     private NavwarnMessage navwarnMessage;
 
     public MessageItem() {
-        
+
     }
-    
+
     public String getAmplifyingRemarks() {
         return amplifyingRemarks;
     }
-    
+
     public void setAmplifyingRemarks(String amplifyingRemarks) {
         this.amplifyingRemarks = amplifyingRemarks;
     }
-    
+
     public String getKeySubject() {
         return keySubject;
     }
-    
+
     public void setKeySubject(String keySubject) {
         this.keySubject = keySubject;
     }
-    
+
+    public MessageCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(MessageCategory category) {
+        this.category = category;
+    }
+
     public NavwarnMessage getNavwarnMessage() {
         return navwarnMessage;
     }
-    
+
     public void setNavwarnMessage(NavwarnMessage navwarnMessage) {
         this.navwarnMessage = navwarnMessage;
     }
-    
+
 }
