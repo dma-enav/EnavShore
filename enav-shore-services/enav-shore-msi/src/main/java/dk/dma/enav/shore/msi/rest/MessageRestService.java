@@ -43,7 +43,8 @@ public class MessageRestService {
     @GET
     @Path("/test")
     public String test() {
-        return "Hello world";
+        log.info("Hello from test");
+        return "Hello world";        
     }
     
     @GET
