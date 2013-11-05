@@ -18,6 +18,7 @@
 	<modules>
 		<module>enav-shore-common</module>
 		<module>enav-shore-msi</module>
+		<module>enav-shore-legacy</module>
 	</modules>
 
 	<dependencyManagement>
