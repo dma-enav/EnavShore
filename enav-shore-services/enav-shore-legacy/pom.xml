@@ -22,9 +22,9 @@
 
 	<!-- Default properties -->
 	<properties>
-		<enav.database.url>jdbc:mysql://localhost:3306/msi</enav.database.url>
-		<enav.database.user>msi</enav.database.user>
-		<enav.database.password>msi</enav.database.password>
+		<enav.database.url>jdbc:mysql://localhost:3306/enav</enav.database.url>
+		<enav.database.user>enav</enav.database.user>
+		<enav.database.password>enav</enav.database.password>
 	</properties>
 
 	<profiles>
@@ -45,7 +45,7 @@
 									<goal>add-resource</goal>
 								</goals>
 								<configuration>
-									<address>subsystem=datasources,data-source=java:jboss/datasources/msiDS</address>
+									<address>subsystem=datasources,data-source=java:jboss/datasources/enavDS</address>
 									<resource>
 										<enable-resource>true</enable-resource>
 										<properties>
