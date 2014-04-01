@@ -28,10 +28,9 @@ public class PermanentItem extends BaseEntity<Integer> {
     private static final long serialVersionUID = 1L;
 
     @NotNull
-    private Integer amplifyingRemarks;
+    private String amplifyingRemarks;
     private String chartNumber;
     private String horizontalDatum;
-    private Integer internationalNumber;
     @OneToOne
     private MessageSeriesIdentifier lastUpdate;
     @NotNull
@@ -44,11 +43,11 @@ public class PermanentItem extends BaseEntity<Integer> {
 
     }
 
-    public Integer getAmplifyingRemarks() {
+    public String getAmplifyingRemarks() {
         return amplifyingRemarks;
     }
 
-    public void setAmplifyingRemarks(Integer amplifyingRemarks) {
+    public void setAmplifyingRemarks(String amplifyingRemarks) {
         this.amplifyingRemarks = amplifyingRemarks;
     }
 
@@ -66,14 +65,6 @@ public class PermanentItem extends BaseEntity<Integer> {
 
     public void setHorizontalDatum(String horizontalDatum) {
         this.horizontalDatum = horizontalDatum;
-    }
-
-    public Integer getInternationalNumber() {
-        return internationalNumber;
-    }
-
-    public void setInternationalNumber(Integer internationalNumber) {
-        this.internationalNumber = internationalNumber;
     }
 
     public MessageSeriesIdentifier getLastUpdate() {

@@ -173,10 +173,9 @@ public class MessageTestRemote {
         message.setAmplifyingRemarks("Avoid any entry");
         
         PermanentItem permanentItem = new PermanentItem();
-        permanentItem.setAmplifyingRemarks(0);
+        permanentItem.setAmplifyingRemarks("Amplifying remarks");
         permanentItem.setChartNumber("DK-1213");
         permanentItem.setHorizontalDatum("FSdasd");
-        permanentItem.setInternationalNumber(213);
         MessageLocation pitLoc = new MessageLocation(LocationType.POINT);
         pitLoc.addPoint(new Point(57, 12));
         permanentItem.setLocation(pitLoc);
