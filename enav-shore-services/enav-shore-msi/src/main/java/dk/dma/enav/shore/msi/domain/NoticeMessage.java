@@ -25,6 +25,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
+/**
+ * An NtM specialization of the {@code Message} class.
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class NoticeMessage extends Message {
@@ -33,13 +36,21 @@ public class NoticeMessage extends Message {
 
     @ElementCollection
     private List<String> lightsListNumbers = new ArrayList<>();
+    
     private String authority;
+    
     private String amplifyingRemarks;
+    
     @OneToMany(cascade = CascadeType.ALL)
     private List<PermanentItem> permanentItem = new ArrayList<>();
+    
     @OneToMany(cascade = CascadeType.ALL)
     private List<TempPreliminaryItem> tempPreliminaryItem = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<MessageCategory> category = new ArrayList<>();
+
+    
     public NoticeMessage() {
 
     }

@@ -31,22 +31,22 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import dk.dma.enav.model.msi.GeneralCategory;
-import dk.dma.enav.model.msi.MessageType;
-import dk.dma.enav.model.msi.NoticeVerb;
-import dk.dma.enav.model.msi.SpecificCategory;
 import dk.dma.enav.shore.common.domain.BaseEntity;
 import dk.dma.enav.shore.common.domain.IEntity;
+import dk.dma.enav.shore.msi.domain.GeneralCategory;
 import dk.dma.enav.shore.msi.domain.MessageCategory;
 import dk.dma.enav.shore.msi.domain.MessageItem;
 import dk.dma.enav.shore.msi.domain.MessageLocation;
+import dk.dma.enav.shore.msi.domain.MessageType;
 import dk.dma.enav.shore.msi.domain.NoticeElement;
 import dk.dma.enav.shore.msi.domain.NoticeMessage;
+import dk.dma.enav.shore.msi.domain.NoticeVerb;
 import dk.dma.enav.shore.msi.domain.PermanentItem;
 import dk.dma.enav.shore.msi.domain.MessageLocation.LocationType;
 import dk.dma.enav.shore.msi.domain.MessageSeriesIdentifier;
 import dk.dma.enav.shore.msi.domain.NavwarnMessage;
 import dk.dma.enav.shore.msi.domain.Point;
+import dk.dma.enav.shore.msi.domain.SpecificCategory;
 import dk.dma.enav.shore.msi.domain.TempPreliminaryItem;
 import dk.dma.enav.shore.msi.service.MessageService;
 
@@ -57,10 +57,10 @@ public class MessageTestRemote {
     public static JavaArchive createDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "msi_test.jar");
         jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-        jar.addClass(dk.dma.enav.model.msi.MessageType.class);
-        jar.addClass(dk.dma.enav.model.msi.MessageCategory.class);
-        jar.addClass(dk.dma.enav.model.msi.GeneralCategory.class);
-        jar.addClass(dk.dma.enav.model.msi.NoticeVerb.class);
+        jar.addClass(MessageType.class);
+        jar.addClass(MessageCategory.class);
+        jar.addClass(GeneralCategory.class);
+        jar.addClass(NoticeVerb.class);
         jar.addClass(SpecificCategory.class);
         jar.addClass(IEntity.class);
         jar.addClass(BaseEntity.class);
@@ -127,7 +127,7 @@ public class MessageTestRemote {
         item2.setAmplifyingRemarks("Debris in water");
         MessageCategory cat2 = new MessageCategory();
         cat2.setGeneralCategory(GeneralCategory.DANGEROUS_WRECKS);
-        cat2.setSpecificCategory(SpecificCategory.WRECK);
+        cat2.setSpecificCategory(SpecificCategory.WRECK_AND_GROUNDS);
         cat2.setOtherCategory("Adrift");
         item2.setCategory(cat2);
 

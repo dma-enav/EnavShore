@@ -24,9 +24,11 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import dk.dma.enav.model.msi.MessageType;
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
+/**
+ * A unique identifier for an MSI or NtM message
+ */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "type", "authority", "number", "year"}))
 public class MessageSeriesIdentifier extends BaseEntity<Integer> {
@@ -36,12 +38,16 @@ public class MessageSeriesIdentifier extends BaseEntity<Integer> {
     @NotNull
     @Enumerated(EnumType.STRING)
     private MessageType type;
+    
     @NotNull
     private String authority;
+    
     @NotNull
     private Integer number;
+    
     @NotNull
     private Integer year;
+    
     @NotNull
     @OneToOne(mappedBy = "seriesIndentifier", cascade = CascadeType.ALL)
     private Message message;

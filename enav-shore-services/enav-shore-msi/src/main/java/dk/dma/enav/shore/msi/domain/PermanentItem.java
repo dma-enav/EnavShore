@@ -22,6 +22,9 @@ import javax.validation.constraints.NotNull;
 
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
+/**
+ * Contains information for permanent NtM messages 
+ */
 @Entity
 public class PermanentItem extends BaseEntity<Integer> {
 
@@ -29,13 +32,18 @@ public class PermanentItem extends BaseEntity<Integer> {
 
     @NotNull
     private String amplifyingRemarks;
+    
     private String chartNumber;
+    
     private String horizontalDatum;
+    
     @OneToOne
     private MessageSeriesIdentifier lastUpdate;
+    
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private MessageLocation location;
+    
     @OneToOne(cascade = CascadeType.ALL)
     private NoticeElement noticeElement;
 

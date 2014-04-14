@@ -26,9 +26,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import dk.dma.enav.model.msi.NoticeVerb;
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
+/**
+ * Used in {@code PermanentItem}s to describe a chart update operation
+ */
 @Entity
 public class NoticeElement extends BaseEntity<Integer> {
 
@@ -36,13 +38,17 @@ public class NoticeElement extends BaseEntity<Integer> {
 
     @NotNull
     private String amplifyingNote;
+    
     @NotNull
     private String featureOrCharacteristic;
+    
     @ElementCollection
     private List<String> graphicalRepresentation = new ArrayList<>();
+    
     @NotNull
     @Enumerated(EnumType.STRING)
     private NoticeVerb noticeVerb;
+    
     @OneToOne(cascade = CascadeType.ALL)
     private MessageLocation location;
 

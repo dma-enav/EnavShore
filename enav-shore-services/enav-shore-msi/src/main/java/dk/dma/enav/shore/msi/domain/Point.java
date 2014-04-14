@@ -20,6 +20,9 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Defines a position by its latitude, longitude and order
+ */
 @Embeddable
 public class Point implements Serializable {
 
@@ -27,8 +30,10 @@ public class Point implements Serializable {
 
     @NotNull
     private Double lat;
+    
     @NotNull
     private Double lon;
+    
     @NotNull
     private Integer num;
 

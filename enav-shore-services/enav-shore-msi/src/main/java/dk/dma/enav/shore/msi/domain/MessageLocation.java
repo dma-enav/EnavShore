@@ -28,6 +28,9 @@ import javax.validation.constraints.NotNull;
 
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
+/**
+ * Defines a location as either a point, a circle, a polygon or a polyline.
+ */
 @Entity
 public class MessageLocation extends BaseEntity<Integer> {
 
@@ -40,10 +43,12 @@ public class MessageLocation extends BaseEntity<Integer> {
     @NotNull
     @Enumerated(EnumType.STRING)
     private LocationType type;
+    
     @NotNull
     @ElementCollection
     @OrderBy("num")
-    private List<Point> points;
+    private List<Point> points = new ArrayList<>();
+    
     private Integer radius;
 
     public MessageLocation() {
@@ -85,9 +90,6 @@ public class MessageLocation extends BaseEntity<Integer> {
     
     @Transient
     public void addPoint(Point p) {
-        if (this.points == null) {
-            this.points = new ArrayList<>();
-        }
         p.setNum(this.points.size() + 1);
         this.points.add(p);
     }

@@ -27,6 +27,9 @@ import javax.validation.constraints.NotNull;
 
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
+/**
+ * Contains information for MSI navigational warnings
+ */
 @Entity
 public class MessageItem extends BaseEntity<Integer> {
 
@@ -34,17 +37,20 @@ public class MessageItem extends BaseEntity<Integer> {
 
     @NotNull
     private String keySubject;
+    
     private String amplifyingRemarks;
+    
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private MessageCategory category;
+    
     @OneToMany(cascade = CascadeType.ALL)
     private List<MessageLocation> location = new ArrayList<>();
+    
     @ManyToOne
     private NavwarnMessage navwarnMessage;
 
     public MessageItem() {
-
     }
 
     public String getAmplifyingRemarks() {

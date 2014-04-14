@@ -27,14 +27,19 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+/**
+ * An MSI specialization of the {@code Message} class.
+ */
 @Entity
 public class NavwarnMessage extends Message {
 
     private static final long serialVersionUID = 1L;
     
     private Date cancellationDate;    
+    
     @ElementCollection
     private Set<MessageSeriesIdentifier> cancellations = new HashSet<>();
+    
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
     private List<MessageItem> messageItem = new ArrayList<>();

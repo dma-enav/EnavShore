@@ -20,10 +20,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
-import dk.dma.enav.model.msi.GeneralCategory;
-import dk.dma.enav.model.msi.SpecificCategory;
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
+/**
+ * The message category
+ */
 @Entity
 public class MessageCategory extends BaseEntity<Integer> {
 
@@ -32,15 +33,21 @@ public class MessageCategory extends BaseEntity<Integer> {
     @NotNull
     @Enumerated(EnumType.STRING)
     private GeneralCategory generalCategory;
+    
     @NotNull
     @Enumerated(EnumType.STRING)
     private SpecificCategory specificCategory;
+    
     @NotNull    
     private String otherCategory;
 
+    /**
+     * Constructor
+     */
     public MessageCategory() {
-
     }
+
+    /******** Getters and setters *********/
 
     public GeneralCategory getGeneralCategory() {
         return generalCategory;

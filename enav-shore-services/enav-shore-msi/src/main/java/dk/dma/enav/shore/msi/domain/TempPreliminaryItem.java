@@ -26,6 +26,9 @@ import javax.validation.constraints.NotNull;
 
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
+/**
+ * Contains information for temporary (T) and preliminary (P) NtM messages 
+ */
 @Entity
 public class TempPreliminaryItem extends BaseEntity<Integer> {
 
@@ -33,8 +36,10 @@ public class TempPreliminaryItem extends BaseEntity<Integer> {
 
     @ElementCollection
     private List<String> graphicalRepresentation = new ArrayList<>();
+    
     @NotNull
     private String itemDescription;
+    
     @OneToOne(cascade = CascadeType.ALL)
     private MessageLocation location;
 

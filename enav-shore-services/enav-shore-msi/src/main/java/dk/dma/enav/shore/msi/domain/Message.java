@@ -29,6 +29,9 @@ import javax.validation.constraints.NotNull;
 
 import dk.dma.enav.shore.common.domain.BaseEntity;
 
+/**
+ * Abstract base class for MSI-NM messages
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Message extends BaseEntity<Integer> {
@@ -38,22 +41,32 @@ public abstract class Message extends BaseEntity<Integer> {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private MessageSeriesIdentifier seriesIndentifier;
+    
     @NotNull
     private String generalArea;
+    
     @NotNull
     private String locality;
+    
     @ElementCollection
     private List<String> specificLocation = new ArrayList<>();
+    
     @ElementCollection
     private List<String> chartNumber = new ArrayList<>();
+    
     @ElementCollection
     private List<Integer> intChartNumber = new ArrayList<>();
+    
     @NotNull
     private Date issueDate;
 
+    /**
+     * Constructor
+     */
     public Message() {
-
     }
+    
+    /******** Getters and setters *********/
     
     public MessageSeriesIdentifier getSeriesIndentifier() {
         return seriesIndentifier;
