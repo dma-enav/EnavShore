@@ -36,22 +36,46 @@ public class MessageServiceImpl implements MessageService {
     
     @EJB
     private MessageDao messageDao;
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NavwarnMessage create(NavwarnMessage navwarnMessage) {
         log.info("Creating navwarn message");
         return messageDao.saveEntity(navwarnMessage);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NoticeMessage create(NoticeMessage noticeMessage) {
         log.info("Creating notice message");
         return messageDao.saveEntity(noticeMessage);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Message> getAll() {
         return messageDao.getAll(Message.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Message findById(Integer id) {
+        return messageDao.getByPrimaryKey(Message.class, id);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Message findByMessageSeriesId(int messageNumber, int messageYear, String messageAuthority) {        
+        return messageDao.findByMessageSeriesId(messageNumber, messageYear, messageAuthority);
+    }
 }

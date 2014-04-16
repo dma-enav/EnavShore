@@ -49,7 +49,7 @@ public class MessageSeriesIdentifier extends BaseEntity<Integer> {
     private Integer year;
     
     @NotNull
-    @OneToOne(mappedBy = "seriesIndentifier", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "seriesIdentifier", cascade = CascadeType.ALL)
     private Message message;
 
     public MessageSeriesIdentifier() {

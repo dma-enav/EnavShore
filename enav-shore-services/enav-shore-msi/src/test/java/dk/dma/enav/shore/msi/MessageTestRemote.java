@@ -85,7 +85,7 @@ public class MessageTestRemote {
         identifier.setType(MessageType.NAVAREA_WARNING);
 
         // Tie to message
-        message.setSeriesIndentifier(identifier);
+        message.setSeriesIdentifier(identifier);
         identifier.setMessage(message);
 
         // Message
@@ -155,7 +155,7 @@ public class MessageTestRemote {
         identifier.setType(MessageType.TEMPORARY_NOTICE);
 
         // Tie to message
-        message.setSeriesIndentifier(identifier);
+        message.setSeriesIdentifier(identifier);
         identifier.setMessage(message);
         
         // Message

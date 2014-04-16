@@ -24,6 +24,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -34,13 +36,18 @@ import dk.dma.enav.shore.common.domain.BaseEntity;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NamedQueries({
+    @NamedQuery(name="Message.findBySeriesIdentifier",
+                query="SELECT msg FROM Message msg where msg.seriesIdentifier.number = :number " +
+                      " and msg.seriesIdentifier.year = :year and msg.seriesIdentifier.authority = :authority")
+}) 
 public abstract class Message extends BaseEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    private MessageSeriesIdentifier seriesIndentifier;
+    private MessageSeriesIdentifier seriesIdentifier;
     
     @NotNull
     private String generalArea;
@@ -68,12 +75,12 @@ public abstract class Message extends BaseEntity<Integer> {
     
     /******** Getters and setters *********/
     
-    public MessageSeriesIdentifier getSeriesIndentifier() {
-        return seriesIndentifier;
+    public MessageSeriesIdentifier getSeriesIdentifier() {
+        return seriesIdentifier;
     }
     
-    public void setSeriesIndentifier(MessageSeriesIdentifier seriesIndentifier) {
-        this.seriesIndentifier = seriesIndentifier;
+    public void setSeriesIdentifier(MessageSeriesIdentifier seriesIdentifier) {
+        this.seriesIdentifier = seriesIdentifier;
     }
 
     public String getGeneralArea() {

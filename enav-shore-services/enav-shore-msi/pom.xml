@@ -18,6 +18,20 @@
 			<groupId>dk.dma.enav.shore</groupId>
 			<artifactId>enav-shore-common</artifactId>
 		</dependency>
+		
+        <!-- Test dependencies -->
+        <dependency>
+          <groupId>org.jboss.weld.se</groupId>
+          <artifactId>weld-se</artifactId>
+          <scope>test</scope>
+        </dependency>
+    
+        <dependency>
+          <groupId>org.jglue.cdi-unit</groupId>
+          <artifactId>cdi-unit</artifactId>
+          <scope>test</scope>
+        </dependency>
+        
 	</dependencies>
 
 	<!-- Default properties -->
@@ -78,6 +92,58 @@
 					<skip>false</skip>
 				</configuration>
 			</plugin>
+			
+            
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>jaxws-maven-plugin</artifactId>
+              <version>1.12</version>
+              <dependencies>
+                <dependency>
+                  <groupId>com.sun.xml.ws</groupId>
+                  <artifactId>jaxws-rt</artifactId>
+                  <version>2.2.3</version>
+                  <scope>compile</scope>
+                </dependency>
+                <dependency>
+                  <groupId>com.sun.xml.ws</groupId>
+                  <artifactId>jaxws-tools</artifactId>
+                  <version>2.2.3</version>
+                  <scope>compile</scope>
+                </dependency>
+                <dependency>
+                  <groupId>com.sun.xml.bind</groupId>
+                  <artifactId>jaxb-xjc</artifactId>
+                  <version>2.2.3-1</version>
+                  <scope>compile</scope>
+                </dependency>
+              </dependencies>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>wsimport</goal>
+                  </goals>
+                  <configuration>
+                    <verbose>true</verbose>
+                    <target>2.0</target>
+                    <sei />
+                    <keep>true</keep>
+                    <sourceDestDir>${project.build.directory}/generated</sourceDestDir>
+                    <wsdlDirectory>${basedir}/src/main/resources/wsdl</wsdlDirectory>
+                    <wsdlFiles>
+                      <wsdlFile>warning.wsdl</wsdlFile>
+                    </wsdlFiles>
+                    <extension>true</extension>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+            
 		</plugins>
 	</build>
 

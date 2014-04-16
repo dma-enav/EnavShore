@@ -13,23 +13,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dk.dma.enav.shore.msi.dao;
+package dk.dma.enav.shore.msi.legacy;
 
-import javax.ejb.Local;
+import java.util.List;
 
-import dk.dma.enav.shore.common.dao.Dao;
-import dk.dma.enav.shore.msi.domain.Message;
+import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
-@Local
-public interface MessageDao extends Dao {
+import dk.frv.msiedit.core.webservice.message.MsiDto;
 
-    /**
-     * Returns the message with the given combination of message number, year and authority
-     * 
-     * @param messageNumber the message number
-     * @param messageYear the message year
-     * @param messageAuthority the authority
-     * @return the message or null if not found
-     */
-    Message findByMessageSeriesId(int messageNumber, int messageYear, String messageAuthority);        
+/**
+ * Provides a simple REST interface for fetching legacy MSI warnings
+ */
+@Path("/legacy-msi")
+public class LegacyMsiRestService {
+    
+    @Inject
+    private LegacyMsiService msiClient;
+
+    @GET
+    @Path("/list")
+    @Produces("application/json")
+    public List<MsiDto> listActiveWarnings() {
+        return msiClient.getActiveWarnings();
+    }
 }
