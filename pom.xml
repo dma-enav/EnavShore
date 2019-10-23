@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>dk.dma.commons</groupId>
 		<artifactId>dma-commons-parent</artifactId>
-		<version>0.1</version>
+		<version>0.5</version>
 	</parent>
 
 	<groupId>dk.dma.enav.shore</groupId>
